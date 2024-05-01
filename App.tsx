@@ -6,12 +6,18 @@ import React from 'react';
 export default function App() {
   return (
     <WebView
-    style={styles.container}
-    source={{ uri: 'https://bibliaudio.com/' }}
-    javaScriptEnabled={true}
-    domStorageEnabled={true}
-    startInLoadingState={false}
-    scalesPageToFit={true} />
+         source={{ uri: 'https://bibliaudio.com/' }}
+        javaScriptEnabled={true} 
+        domStorageEnabled={true} 
+        mixedContentMode="compatibility"
+        originWhitelist={['*']} 
+        allowFileAccess={true} 
+        allowUniversalAccessFromFileURLs={true}
+        mediaPlaybackRequiresUserAction={false} 
+        // Additional props as needed based on specific requirements
+        onError={(error) => console.error('WebView error:', error.nativeEvent)}
+        // You can add onLoad, onLoadStart, onLoadEnd handlers for debugging
+      />
   
   
   );
