@@ -10,8 +10,9 @@ export default function App() {
     source={{ uri: 'https://bibliaudio.com/' }}
     javaScriptEnabled={true}
     domStorageEnabled={true}
-    injectedJavaScript="console.error = console.warn = (function() { return function() {}; })()"
-  />
+    startInLoadingState={false}
+    scalesPageToFit={true} />
+  
   
   );
 }
