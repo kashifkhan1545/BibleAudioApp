@@ -1,25 +1,27 @@
 import { WebView } from 'react-native-webview';
 import Constants from 'expo-constants';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native'; // Import Text for error message
 import React from 'react';
 
 export default function App() {
   return (
-    <WebView
-         source={{ uri: 'https://bibliaudio.com/' }}
+    <View style={styles.container}>
+      {/* Enclose WebView within a View */}
+      <WebView
+        source={{ uri: 'https://bibliaudio.com/' }}
         javaScriptEnabled={true} 
         domStorageEnabled={true} 
         mixedContentMode="compatibility"
         originWhitelist={['*']} 
         allowFileAccess={true} 
         allowUniversalAccessFromFileURLs={true}
-        mediaPlaybackRequiresUserAction={false} 
-        // Additional props as needed based on specific requirements
+        mediaPlaybackRequiresUserAction={false}
+        injectedJavaScript={`document.querySelector('.audio-player').style.position = 'fixed'; document.querySelector('.audio-player').style.bottom = '0';`}
+        allowsInlineMediaPlayback={true} 
         onError={(error) => console.error('WebView error:', error.nativeEvent)}
         // You can add onLoad, onLoadStart, onLoadEnd handlers for debugging
       />
-  
-  
+    </View>
   );
 }
 
